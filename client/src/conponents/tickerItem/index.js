@@ -2,10 +2,23 @@ import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import {Link, Grid, Typography} from '@material-ui/core';
 import {useStyles} from './styles';
+import {PRICE_CHANGE_DIRECTION} from '../../constants';
 
-// eslint-disable-next-line max-params
-const TickerItem = ({ ticker, name, price, change, change_percent }) => {
+const TickerItem = (props) => {
     const classes = useStyles();
+    const { ticker, name, price, change, changeDirection, changePCT } = props;
+
+    const CHANGE_DIRECTION_SYMBOLS = {
+        [ PRICE_CHANGE_DIRECTION.equal ]: '',
+        [ PRICE_CHANGE_DIRECTION.grow ]:  '+',
+        [ PRICE_CHANGE_DIRECTION.drop ]:  '-',
+    };
+
+    const CHANGE_PCT_SYMBOLS = {
+        [ PRICE_CHANGE_DIRECTION.equal ]: '',
+        [ PRICE_CHANGE_DIRECTION.grow ]:  '↑',
+        [ PRICE_CHANGE_DIRECTION.drop ]:  '↓',
+    };
 
     return (
         <li
@@ -15,7 +28,7 @@ const TickerItem = ({ ticker, name, price, change, change_percent }) => {
                 className = { classes.link }
                 color = 'inherit'
                 component = { RouterLink }
-                to = { `/ticker/${ticker}` }
+                to = { `/${ticker}` }
                 underline = 'none'
                 variant = 'body2'>
                 <Grid
@@ -36,12 +49,12 @@ const TickerItem = ({ ticker, name, price, change, change_percent }) => {
                         <Typography
                             component = 'span'
                             variant = 'body1'>
-                            {`name ${name}`}
+                            {name}
                         </Typography>
                     </Grid>
                     <Grid
                         item
-                        align = 'center'
+                        align = 'right'
                         xs = { 2 }>
                         <Typography
                             component = 'span'
@@ -51,22 +64,22 @@ const TickerItem = ({ ticker, name, price, change, change_percent }) => {
                     </Grid>
                     <Grid
                         item
-                        align = 'center'
+                        align = 'right'
                         xs = { 2 }>
                         <Typography
                             component = 'span'
                             variant = 'body1'>
-                            {change}
+                            {CHANGE_DIRECTION_SYMBOLS[ changeDirection ]} {change}
                         </Typography>
                     </Grid>
                     <Grid
                         item
-                        align = 'center'
+                        align = 'right'
                         xs = { 2 }>
                         <Typography
                             component = 'span'
                             variant = 'body1'>
-                            {change_percent}
+                            {CHANGE_PCT_SYMBOLS[ changeDirection ]} {changePCT} %
                         </Typography>
                     </Grid>
                     <Grid

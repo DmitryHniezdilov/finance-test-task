@@ -1,9 +1,12 @@
 import React from 'react';
 import Router from './Router';
+import InitStore from './redux/store';
 
 const App = () => {
     return (
-        <Router/>
+        <InitStore>
+            <Router/>
+        </InitStore>
     );
 };
 

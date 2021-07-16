@@ -1,21 +1,15 @@
 import * as types from '../actionTypes';
 
 const initialState = {
-    isLoading: false,
+    tickers: [],
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case types.START_LOADING:
+        case types.ADD_TICKER:
             return {
                 ...state,
-                isLoading: true,
-            };
-
-        case types.FINISH_LOADING:
-            return {
-                ...state,
-                isLoading: false,
+                tickers: [ ...state.tickers, action.ticker ],
             };
 
         default:

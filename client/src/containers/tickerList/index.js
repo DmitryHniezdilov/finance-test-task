@@ -1,40 +1,56 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TickerItem from '../../conponents/tickerItem';
+import { useDispatch, useSelector } from 'react-redux';
+import * as generalActions from '../../redux/actions/general';
+import {PRICE_CHANGE_DIRECTION, TICKERS_NAMES} from '../../constants';
 import {useStyles} from './styles';
-
-const rows = [
-    {
-        ticker:          'AAPL',
-        exchange:        'NASDAQ',
-        price:           279.29,
-        change:          64.52,
-        change_percent:  0.84,
-        dividend:        0.56,
-        yield:           1.34,
-        last_trade_time: '2021-04-30T11:53:21.000Z',
-    },
-    {ticker: 'GOOGL', exchange: 'NASDAQ', price: 237.08, change: 154.38, change_percent: 0.10, dividend: 0.46, yield: 1.18, last_trade_time: '2021-04-30T11:53:21.000Z'},
-    {ticker: 'MSFT', exchange: 'NASDAQ', price: 261.46, change: 161.45, change_percent: 0.41, dividend: 0.18, yield: 0.98, last_trade_time: '2021-04-30T11:53:21.000Z'},
-    {ticker: 'AMZN', exchange: 'NASDAQ', price: 260.34, change: 128.71, change_percent: 0.60, dividend: 0.07, yield: 0.42, last_trade_time: '2021-04-30T11:53:21.000Z'},
-    {ticker: 'FB', exchange: 'NASDAQ', price: 266.77, change: 171.92, change_percent: 0.75, dividend: 0.52, yield: 1.31, last_trade_time: '2021-04-30T11:53:21.000Z'},
-    {ticker: 'TSLA', exchange: 'NASDAQ', price: 272.13, change: 158.76, change_percent: 0.10, dividend: 0.96, yield: 1.00, last_trade_time: '2021-04-30T11:53:21.000Z'},
-];
 
 const TickerList = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const { tickers } = useSelector((state) => state.general);
+    const currentTickers = tickers[ tickers.length - 1 ] || [];
+    const previousTickers = tickers[ tickers.length - 2 ] || [];
+
+    useEffect(() => {
+        dispatch(generalActions.receiveSocketTicker());
+
+        return () => {
+            dispatch(generalActions.disconnectSocketTicker());
+        };
+    }, []);
+
 
     return (
         <ul className = { classes.list }>
-            {rows.map((row) => (
-                <TickerItem
-                    change = { row.change }
-                    change_percent = { row.change_percent }
-                    key = { row.ticker }
-                    name =   { row.name }
-                    price =  { row.price }
-                    ticker = { row.ticker }
-                />
-            ))}
+            {currentTickers.map((row, index) => {
+                const {ticker, price } = row;
+                const {price: previousTickerPrice} = previousTickers[ index ] || {price};
+                const change = Math.abs(price - previousTickerPrice).toFixed(2);
+                const changePCT = Math.abs((price - previousTickerPrice) / previousTickerPrice * 100).toFixed(2);
+
+                let changeDirection = PRICE_CHANGE_DIRECTION.equal;
+
+                if (price > previousTickerPrice) {
+                    changeDirection = PRICE_CHANGE_DIRECTION.grow;
+                }
+
+                if (price < previousTickerPrice) {
+                    changeDirection =  PRICE_CHANGE_DIRECTION.drop;
+                }
+
+                return (
+                    <TickerItem
+                        change = { change }
+                        changeDirection = { changeDirection }
+                        changePCT = { changePCT }
+                        key = { ticker }
+                        name =   { TICKERS_NAMES[ ticker ] }
+                        price =  { price }
+                        ticker = { ticker }
+                    />
+                );
+            })}
         </ul>
     );
 };

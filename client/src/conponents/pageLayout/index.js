@@ -19,7 +19,7 @@ const PageLayout = ({children}) => {
                 <main className = { classes.toolbar }>{children}</main>
 
             </Container>
-            <Footer />
+            <Footer/>
         </Box>
     );
 };

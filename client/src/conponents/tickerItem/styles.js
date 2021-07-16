@@ -18,7 +18,7 @@ export const useStyles = makeStyles({
         display:         'inline-block',
         width:           '47px',
         height:          '20px',
-        marginRight:     '10px',
+        margin:          '0 15px',
         borderRadius:    '4px',
         backgroundColor: 'rgb(213, 94, 0)',
     },
