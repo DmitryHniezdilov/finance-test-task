@@ -1,19 +1,24 @@
 import {makeStyles} from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
-    listItem: {
-        borderTop: '1px solid #dadce0',
-    },
-    link: {
-        textDecoration: 'none',
-        height:         '48px',
-    },
-    listItemInner: {
+    tableRow: {
         height:    '48px',
-        '&:hover': {
-            background: '#eaebec',
+        borderTop: '1px solid #dadce0',
+        cursor:    'pointer',
+        // '&:hover': {
+        //     background: '#eaebec',
+        // },
+        // '&:focus': {
+        //     border:        'none',
+        //     outline:       '2px solid #333',
+        //     outlineOffset: '2px',
+        // },
+        '& td': {
+            borderBottom: 'none',
+            padding:      '6px',
         },
     },
+
     tickerWrap: {
         display:         'inline-block',
         width:           '47px',
@@ -28,9 +33,7 @@ export const useStyles = makeStyles({
         fontSize:       '.6875rem',
         lineHeight:     '1rem',
         textTransform:  'uppercase',
-        boxAlign:       'center',
         alignItems:     'center',
-        boxPack:        'center',
         justifyContent: 'center',
         fontWeight:     'bold',
         height:         '22px',

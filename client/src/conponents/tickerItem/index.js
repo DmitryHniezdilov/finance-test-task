@@ -1,101 +1,77 @@
 import React from 'react';
-import {Link as RouterLink} from 'react-router-dom';
-import {Link, Grid, Typography} from '@material-ui/core';
-import {useStyles} from './styles';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import {TableRow, TableCell, Typography} from '@material-ui/core';
+import ControlPointIcon from '@material-ui/icons/ControlPoint';
+import TickerItemChange from '../tickerItemChange';
+import TickerItemPct from '../tickerItemPct';
 import {PRICE_CHANGE_DIRECTION} from '../../constants';
+import {useStyles} from './styles';
 
 const TickerItem = (props) => {
-    const classes = useStyles();
     const { ticker, name, price, change, changeDirection, changePCT } = props;
+    const classes = useStyles();
+    let history = useHistory();
 
-    const CHANGE_DIRECTION_SYMBOLS = {
-        [ PRICE_CHANGE_DIRECTION.equal ]: '',
-        [ PRICE_CHANGE_DIRECTION.grow ]:  '+',
-        [ PRICE_CHANGE_DIRECTION.drop ]:  '-',
-    };
-
-    const CHANGE_PCT_SYMBOLS = {
-        [ PRICE_CHANGE_DIRECTION.equal ]: '',
-        [ PRICE_CHANGE_DIRECTION.grow ]:  '↑',
-        [ PRICE_CHANGE_DIRECTION.drop ]:  '↓',
+    const handleClick = () => {
+        history.push(`/${ticker}`);
     };
 
     return (
-        <li
-            className = { classes.listItem }>
-            <Link
-                noWrap
-                className = { classes.link }
-                color = 'inherit'
-                component = { RouterLink }
-                to = { `/${ticker}` }
-                underline = 'none'
-                variant = 'body2'>
-                <Grid
-                    container
-                    alignItems = 'center'
-                    className = { classes.listItemInner }
-                    direction = 'row'
-                    justifyContent = 'flex-start'>
-                    <Grid
-                        item
-                        xs = { 5 }>
-                        <div className = { classes.tickerWrap }>
-                            <div
-                                className = { classes.ticker }>
-                                {ticker}
-                            </div>
-                        </div>
-                        <Typography
-                            component = 'span'
-                            variant = 'body1'>
-                            {name}
-                        </Typography>
-                    </Grid>
-                    <Grid
-                        item
-                        align = 'right'
-                        xs = { 2 }>
-                        <Typography
-                            component = 'span'
-                            variant = 'body1'>
-                            {price}
-                        </Typography>
-                    </Grid>
-                    <Grid
-                        item
-                        align = 'right'
-                        xs = { 2 }>
-                        <Typography
-                            component = 'span'
-                            variant = 'body1'>
-                            {CHANGE_DIRECTION_SYMBOLS[ changeDirection ]} {change}
-                        </Typography>
-                    </Grid>
-                    <Grid
-                        item
-                        align = 'right'
-                        xs = { 2 }>
-                        <Typography
-                            component = 'span'
-                            variant = 'body1'>
-                            {CHANGE_PCT_SYMBOLS[ changeDirection ]} {changePCT} %
-                        </Typography>
-                    </Grid>
-                    <Grid
-                        item
-                        align = 'center'
-                        xs = { 1 }>
-                        <Typography
-                            component = 'span'
-                            variant = 'body1'>
-                            +
-                        </Typography>
-                    </Grid>
-                </Grid>
-            </Link>
-        </li>
+        <TableRow
+            hover
+            className = { classes.tableRow }
+            role = 'row'
+            onClick = { handleClick }>
+            <TableCell>
+                <div className = { classes.tickerWrap }>
+                    <div
+                        className = { classes.ticker }>
+                        {ticker}
+                    </div>
+                </div>
+            </TableCell>
+            <TableCell>
+                <Typography
+                    component = 'span'
+                    variant = 'body1'>
+                    {name}
+                </Typography>
+            </TableCell>
+            <TableCell>
+                <Typography
+                    component = 'span'
+                    variant = 'body1'>
+                    {price}
+                </Typography>
+            </TableCell>
+            <TableCell align = 'right'>
+                <TickerItemChange
+                    change = { change }
+                    changeDirection = { changeDirection }
+                />
+            </TableCell>
+            <TableCell align = 'right'>
+                <TickerItemPct
+                    changeDirection = { changeDirection }
+                    changePCT = { changePCT }
+                />
+            </TableCell>
+            <TableCell align = 'right'>
+                <ControlPointIcon/>
+            </TableCell>
+        </TableRow>
     );
+};
+
+TickerItem.propTypes = {
+    changeDirection: PropTypes.oneOf(
+        [ PRICE_CHANGE_DIRECTION.grow, PRICE_CHANGE_DIRECTION.drop, PRICE_CHANGE_DIRECTION.equal ],
+    ).isRequired,
+    changePCT: PropTypes.string,
+    change:    PropTypes.string,
+    ticker:    PropTypes.string,
+    name:      PropTypes.string,
 };
 
 export default TickerItem;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, CssBaseline, Container  } from '@material-ui/core';
 import Footer from '../footer';
 import Header from '../header';
@@ -22,6 +23,10 @@ const PageLayout = ({children}) => {
             <Footer/>
         </Box>
     );
+};
+
+PageLayout.propTypes = {
+    children: PropTypes.node,
 };
 
 export default PageLayout;

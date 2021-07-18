@@ -10,13 +10,13 @@ const Header = () => {
             m = { 4 }>
             <Link
                 noWrap
-                color = 'inherit'
+                color = 'primary'
                 component = { RouterLink }
                 to = '/'
                 variant = 'body2'>
                 <Typography
                     align = 'center'
-                    color = 'inherit'
+                    color = 'primary'
                     component = 'h1'
                     display = 'inline'
                     variant = 'h4'>

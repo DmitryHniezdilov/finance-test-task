@@ -8,7 +8,8 @@ export const useStyles = makeStyles({
         minHeight:       '100vh',
     },
     container: {
-        flexGrow: '1',
+        flexGrow:   '1',
+        paddingTop: '24px',
     },
     footer: {
         flexShrink: '0',

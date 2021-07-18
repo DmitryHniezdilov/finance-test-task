@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import TickerItem from '../../conponents/tickerItem';
 import { useDispatch, useSelector } from 'react-redux';
 import * as generalActions from '../../redux/actions/general';
+import {Typography, Table, TableBody, Paper} from '@material-ui/core';
+import TickerItem from '../../conponents/tickerItem';
+import Title from '../../conponents/title';
 import {PRICE_CHANGE_DIRECTION, TICKERS_NAMES} from '../../constants';
 import {useStyles} from './styles';
 
@@ -20,38 +22,60 @@ const TickerList = () => {
         };
     }, []);
 
-
     return (
-        <ul className = { classes.list }>
-            {currentTickers.map((row, index) => {
-                const {ticker, price } = row;
-                const {price: previousTickerPrice} = previousTickers[ index ] || {price};
-                const change = Math.abs(price - previousTickerPrice).toFixed(2);
-                const changePCT = Math.abs((price - previousTickerPrice) / previousTickerPrice * 100).toFixed(2);
+        <>
+            { currentTickers.length === 0 && (
+                <Typography
+                    align = 'center'
+                    component = 'span'
+                    variant = 'h5'>
+                    Please run server to give data
+                </Typography>
+            )}
 
-                let changeDirection = PRICE_CHANGE_DIRECTION.equal;
+            { currentTickers.length !== 0 && (
+                <Paper className = { classes.paper }>
+                    <Title>
+                        Interested Promotions
+                    </Title>
+                    <Table
+                        aria-label = 'tickers table'
+                        mt = { 3 }
+                        size = 'small'>
+                        <TableBody role = 'rowgroup'>
+                            {currentTickers.map((row, index) => {
+                                const {ticker, price } = row;
+                                const {price: previousTickerPrice} = previousTickers[ index ] || {price};
+                                const change = Math.abs(price - previousTickerPrice).toFixed(2);
+                                const changePCT = Math.abs((price - previousTickerPrice) / previousTickerPrice * 100).toFixed(2);
 
-                if (price > previousTickerPrice) {
-                    changeDirection = PRICE_CHANGE_DIRECTION.grow;
-                }
+                                let changeDirection = PRICE_CHANGE_DIRECTION.equal;
 
-                if (price < previousTickerPrice) {
-                    changeDirection =  PRICE_CHANGE_DIRECTION.drop;
-                }
+                                if (price > previousTickerPrice) {
+                                    changeDirection = PRICE_CHANGE_DIRECTION.grow;
+                                }
 
-                return (
-                    <TickerItem
-                        change = { change }
-                        changeDirection = { changeDirection }
-                        changePCT = { changePCT }
-                        key = { ticker }
-                        name =   { TICKERS_NAMES[ ticker ] }
-                        price =  { price }
-                        ticker = { ticker }
-                    />
-                );
-            })}
-        </ul>
+                                if (price < previousTickerPrice) {
+                                    changeDirection =  PRICE_CHANGE_DIRECTION.drop;
+                                }
+
+                                return (
+                                    <TickerItem
+                                        change = { change }
+                                        changeDirection = { changeDirection }
+                                        changePCT = { changePCT }
+                                        key = { ticker }
+                                        name =   { TICKERS_NAMES[ ticker ] }
+                                        price =  { price }
+                                        ticker = { ticker }
+                                    />
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </Paper>
+            )}
+        </>
     );
 };
 

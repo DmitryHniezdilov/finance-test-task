@@ -5,6 +5,8 @@ import {
     Route,
 } from 'react-router-dom';
 import Main from './pages/main';
+import ChartPage from './pages/chartPage';
+import NotFound from './pages/notFound';
 
 const Router = () => {
     return (
@@ -18,12 +20,12 @@ const Router = () => {
                 </Route>
                 <Route
                     exact
-                    key = 'category'
-                    path = '/categories'>
-                    {/*<Category/>*/}
+                    key = 'chart'
+                    path = '/:ticker'>
+                    <ChartPage/>
                 </Route>
                 <Route path = '*'>
-                    {/*<NotFound/>*/}
+                    <NotFound/>
                 </Route>
             </Switch>
         </BrowserRouter>
