@@ -25,7 +25,7 @@ const Chart = ({data}) => {
                         angle = { 270 }
                         position = 'left'
                         style = {{ textAnchor: 'middle', fill: theme.palette.text.primary }}>
-                        Sales
+                        Sales, $
                     </Label>
                 </YAxis>
                 <Line

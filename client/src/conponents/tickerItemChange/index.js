@@ -20,7 +20,7 @@ const TickerItemChange = (props) => {
             component = 'span'
             variant = 'body1'
             { ...other }>
-            {`${CHANGE_DIRECTION_SYMBOLS[ changeDirection ]}\u00A0${change}`}
+            {`${CHANGE_DIRECTION_SYMBOLS[ changeDirection ]}\u00A0${change}\u00A0$`}
         </Typography>
     );
 };

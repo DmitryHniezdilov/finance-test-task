@@ -42,7 +42,7 @@ const TickerItem = (props) => {
                 <Typography
                     component = 'span'
                     variant = 'body1'>
-                    {price}
+                    {`${price}\u00A0$`}
                 </Typography>
             </TableCell>
             <TableCell align = 'right'>

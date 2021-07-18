@@ -1,46 +1,67 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import * as generalActions from '../../redux/actions/general';
+import { useRouteMatch } from 'react-router-dom';
 import {Typography, Paper} from '@material-ui/core';
 import Title from '../../conponents/title';
 import Chart from '../../conponents/chart';
+import {TICKERS_NAMES} from '../../constants';
 import {useStyles} from './styles';
 
-// Generate Sales Data
-function createData(time, amount) {
-    return { time, amount };
-}
-
-const data = [
-    createData('00:00', 0),
-    createData('03:00', 300),
-    createData('06:00', 600),
-    createData('09:00', 800),
-    createData('12:00', 1500),
-    createData('15:00', 2000),
-    createData('18:00', 2400),
-    createData('21:00', 2400),
-    createData('24:00', 2500),
-];
-
+// Generate Data
+const createData = (time, amount) => ({ time, amount });
 
 const TickerChart = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const { tickers } = useSelector((state) => state.general);
+    const { params } = useRouteMatch();
+    const { ticker: tickerName } = params;
+
+    const filteredTickerData = tickers.reduce((acc, ticker) => {
+        const currentTicker = ticker.find((item) => item.ticker === tickerName);
+
+        return [ ...acc, currentTicker ];
+    }, []);
+
+    const normalizedTickerData = filteredTickerData.map((ticker) => {
+        const date = new Date(ticker.last_trade_time);
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+
+        return createData(`${hours}:${minutes}`, ticker.price);
+    });
+
+    const { price, last_trade_time: tradeTime } = filteredTickerData[ filteredTickerData.length - 1 ] || {};
+    const optionsTradeTime = {day: 'numeric', month: 'long', year: 'numeric' };
+    const formattedTradeTime = new Date(tradeTime)
+        .toLocaleString('en-US', optionsTradeTime);
+
+
+    useEffect(() => {
+        dispatch(generalActions.receiveSocketTicker());
+
+        return () => {
+            dispatch(generalActions.disconnectSocketTicker());
+        };
+    }, []);
 
     return (
         <Paper className = { classes.paper }>
             <Title>
-                Tickers name
+                { TICKERS_NAMES[ tickerName ] }
             </Title>
             <Typography
                 component = 'p'
                 variant = 'h4'>
-                Current price $
+                {`${price} $`}
             </Typography>
             <Typography
                 color = 'textSecondary'>
-                on 15 March, 2019 ( current data )
+                {`on ${formattedTradeTime}`}
             </Typography>
             <Chart
-                data = { data }
+                data = { normalizedTickerData }
             />
         </Paper>
     );

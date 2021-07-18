@@ -15,20 +15,22 @@ export const useStyles = makeStyles({
         color:        (props) => {
             if (props.changeDirection === PRICE_CHANGE_DIRECTION.grow) {
                 return '#137333';
-            } else if (props.changeDirection === PRICE_CHANGE_DIRECTION.drop) {
-                return '#a50e0e';
-            } else {
-                return 'rgba(0, 0, 0, 0.87)';
             }
+            if (props.changeDirection === PRICE_CHANGE_DIRECTION.drop) {
+                return '#a50e0e';
+            }
+
+            return 'rgba(0, 0, 0, 0.87)';
         },
         background: (props) => {
-            if (props.changeDirection === 'grow') {
+            if (props.changeDirection === PRICE_CHANGE_DIRECTION.grow) {
                 return '#e6f4ea';
-            } else if (props.changeDirection === 'drop') {
-                return '#fce8e6';
-            } else {
-                return 'transparent';
             }
+            if (props.changeDirection === PRICE_CHANGE_DIRECTION.drop) {
+                return '#fce8e6';
+            }
+
+            return 'transparent';
         },
     },
 });

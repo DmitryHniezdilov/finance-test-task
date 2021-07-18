@@ -13,7 +13,7 @@ export const useStyles = makeStyles({
         //     outline:       '2px solid #333',
         //     outlineOffset: '2px',
         // },
-        '& td': {
+        '& td':    {
             borderBottom: 'none',
             padding:      '6px',
         },
