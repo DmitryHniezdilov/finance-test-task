@@ -1,8 +1,8 @@
 import React from 'react';
-import PageLayout from '../../conponents/pageLayout';
+import PageLayout from '../../components/pageLayout';
 import TickerChart from '../../containers/tickerChart';
 
-const ChartPage = () => {
+const Chart = () => {
     return (
         <PageLayout>
             <TickerChart/>
@@ -10,4 +10,4 @@ const ChartPage = () => {
     );
 };
 
-export default ChartPage;
+export default Chart;

@@ -16,6 +16,7 @@ export const useStyles = makeStyles({
             if (props.changeDirection === PRICE_CHANGE_DIRECTION.grow) {
                 return '#137333';
             }
+
             if (props.changeDirection === PRICE_CHANGE_DIRECTION.drop) {
                 return '#a50e0e';
             }
@@ -26,6 +27,7 @@ export const useStyles = makeStyles({
             if (props.changeDirection === PRICE_CHANGE_DIRECTION.grow) {
                 return '#e6f4ea';
             }
+
             if (props.changeDirection === PRICE_CHANGE_DIRECTION.drop) {
                 return '#fce8e6';
             }

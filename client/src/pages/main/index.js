@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../../conponents/pageLayout';
+import PageLayout from '../../components/pageLayout';
 import TickerList from '../../containers/tickerList';
 
 const Main = () => {

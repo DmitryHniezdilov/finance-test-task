@@ -5,7 +5,7 @@ import {
     Route,
 } from 'react-router-dom';
 import Main from './pages/main';
-import ChartPage from './pages/chartPage';
+import Chart from './pages/chart';
 import NotFound from './pages/notFound';
 
 const Router = () => {
@@ -22,7 +22,7 @@ const Router = () => {
                     exact
                     key = 'chart'
                     path = '/:ticker'>
-                    <ChartPage/>
+                    <Chart/>
                 </Route>
                 <Route path = '*'>
                     <NotFound/>

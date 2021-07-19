@@ -1,26 +1,16 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as generalActions from '../../redux/actions/general';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import {Typography, Table, TableBody, Paper} from '@material-ui/core';
-import TickerItem from '../../conponents/tickerItem';
-import Title from '../../conponents/title';
+import TickerItem from '../../components/tickerItem';
+import Title from '../../components/title';
 import {PRICE_CHANGE_DIRECTION, TICKERS_NAMES} from '../../constants';
 import {useStyles} from './styles';
 
 const TickerList = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
     const { tickers } = useSelector((state) => state.general);
     const currentTickers = tickers[ tickers.length - 1 ] || [];
     const previousTickers = tickers[ tickers.length - 2 ] || [];
-
-    useEffect(() => {
-        dispatch(generalActions.receiveSocketTicker());
-
-        return () => {
-            dispatch(generalActions.disconnectSocketTicker());
-        };
-    }, []);
 
     return (
         <>

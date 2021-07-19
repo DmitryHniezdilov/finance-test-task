@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import * as generalActions from '../../redux/actions/general';
+import React from 'react';
+import { useSelector} from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import {Typography, Paper} from '@material-ui/core';
-import Title from '../../conponents/title';
-import Chart from '../../conponents/chart';
+import Title from '../../components/title';
+import Chart from '../../components/chart';
 import {TICKERS_NAMES} from '../../constants';
 import {useStyles} from './styles';
 
@@ -13,7 +12,6 @@ const createData = (time, amount) => ({ time, amount });
 
 const TickerChart = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
     const { tickers } = useSelector((state) => state.general);
     const { params } = useRouteMatch();
     const { ticker: tickerName } = params;
@@ -36,15 +34,6 @@ const TickerChart = () => {
     const optionsTradeTime = {day: 'numeric', month: 'long', year: 'numeric' };
     const formattedTradeTime = new Date(tradeTime)
         .toLocaleString('en-US', optionsTradeTime);
-
-
-    useEffect(() => {
-        dispatch(generalActions.receiveSocketTicker());
-
-        return () => {
-            dispatch(generalActions.disconnectSocketTicker());
-        };
-    }, []);
 
     return (
         <Paper className = { classes.paper }>

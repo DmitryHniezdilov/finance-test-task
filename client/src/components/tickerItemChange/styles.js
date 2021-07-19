@@ -7,6 +7,7 @@ export const useStyles = makeStyles({
             if (props.changeDirection === PRICE_CHANGE_DIRECTION.grow) {
                 return '#137333';
             }
+
             if (props.changeDirection === PRICE_CHANGE_DIRECTION.drop) {
                 return '#a50e0e';
             }

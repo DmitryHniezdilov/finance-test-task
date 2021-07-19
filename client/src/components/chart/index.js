@@ -40,7 +40,7 @@ const Chart = ({data}) => {
 };
 
 Chart.propTypes = {
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Chart;

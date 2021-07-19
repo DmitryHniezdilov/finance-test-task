@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useDispatch } from 'react-redux';
 import Router from './Router';
-import InitStore from './redux/store';
+import * as generalActions from './redux/actions/general';
 
 const App = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(generalActions.receiveSocketTicker());
+
+        return () => {
+            dispatch(generalActions.disconnectSocketTicker());
+        };
+    }, []);
+
     return (
-        <InitStore>
-            <Router/>
-        </InitStore>
+        <Router/>
     );
 };
 
