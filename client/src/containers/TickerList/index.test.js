@@ -3,7 +3,7 @@ import {render} from '@testing-library/react';
 import * as redux from 'react-redux';
 import TickerList from './index';
 
-describe('tickerList', () => {
+describe('TickerList', () => {
     beforeEach(() => {
         redux.useSelector = jest.fn(() => ({tickers: []}));
     });

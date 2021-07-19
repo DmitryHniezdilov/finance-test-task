@@ -1,6 +1,6 @@
 import React from 'react';
-import PageLayout from '../../components/pageLayout';
-import TickerList from '../../containers/tickerList';
+import PageLayout from '../../components/PageLayout';
+import TickerList from '../../containers/TickerList';
 
 const Main = () => {
     return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Typography, Table, TableBody, Paper} from '@material-ui/core';
-import TickerItem from '../../components/tickerItem';
-import Title from '../../components/title';
+import TickerItem from '../TickerItem';
+import Title from '../../components/Title';
 import {PRICE_CHANGE_DIRECTION, TICKERS_NAMES} from '../../constants';
 import {useStyles} from './styles';
 

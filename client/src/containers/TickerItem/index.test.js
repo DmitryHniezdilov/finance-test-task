@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => ({
     useHistory:    () =>({ push: mockHistoryPush }),
 }));
 
-describe('tickerItem', () => {
+describe('TickerItem', () => {
     const mockTicker = 'AAPL';
 
     const basicProps = {

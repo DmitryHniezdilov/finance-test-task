@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector} from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import {Typography, Paper} from '@material-ui/core';
-import Title from '../../components/title';
-import Chart from '../../components/chart';
+import Title from '../../components/Title';
+import Chart from '../../components/Chart';
 import {TICKERS_NAMES} from '../../constants';
 import {useStyles} from './styles';
 

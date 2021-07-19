@@ -1,15 +1,15 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import TickerItemPct from './index';
+import TickerItemChange from './index';
 
-describe('tickerItemPct', () => {
+describe('TickerItemChange', () => {
     test('should render without errors', () => {
         const basicProps = {
-            changePCT:       '11',
+            change:          '111',
             changeDirection: 'grow',
         };
 
-        const {container} = render(<TickerItemPct{ ...basicProps }/>);
+        const {container} = render(<TickerItemChange{ ...basicProps }/>);
 
         expect(container.firstChild).toBeInTheDocument();
     });

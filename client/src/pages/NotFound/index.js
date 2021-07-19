@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import PageLayout from '../../components/pageLayout';
+import PageLayout from '../../components/PageLayout';
 
 const NotFound = () => {
     return (

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import {TableRow, TableCell, Typography} from '@material-ui/core';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
-import TickerItemChange from '../tickerItemChange';
-import TickerItemPct from '../tickerItemPct';
+import TickerItemChange from '../../components/TickerItemChange';
+import TickerItemPct from '../../components/TickerItemPct';
 import {PRICE_CHANGE_DIRECTION} from '../../constants';
 import {useStyles} from './styles';
 

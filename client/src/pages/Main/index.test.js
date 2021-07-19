@@ -1,12 +1,12 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import Chart from './index';
+import Main from './index';
 
-jest.mock('../../components/pageLayout', () => () => <div>pageLayout</div>);
+jest.mock('../../components/PageLayout', () => () => <div>pageLayout</div>);
 
-describe('chart', () => {
+describe('main', () => {
     test('should render without errors', () => {
-        const {container} = render(<Chart/>);
+        const {container} = render(<Main/>);
 
         expect(container.firstChild).toBeInTheDocument();
     });

@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import Chart from './index';
 
-describe('chart', () => {
+describe('Chart', () => {
     test('should render without errors', () => {
         const basicProps = {
             data: [

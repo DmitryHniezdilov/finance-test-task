@@ -1,6 +1,6 @@
 import React from 'react';
-import PageLayout from '../../components/pageLayout';
-import TickerChart from '../../containers/tickerChart';
+import PageLayout from '../../components/PageLayout';
+import TickerChart from '../../containers/TickerChart';
 
 const Chart = () => {
     return (

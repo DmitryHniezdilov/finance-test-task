@@ -4,9 +4,9 @@ import {
     Switch,
     Route,
 } from 'react-router-dom';
-import Main from './pages/main';
-import Chart from './pages/chart';
-import NotFound from './pages/notFound';
+import Main from './pages/Main';
+import Chart from './pages/Chart';
+import NotFound from './pages/NotFound';
 
 const Router = () => {
     return (

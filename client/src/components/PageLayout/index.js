@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, CssBaseline, Container  } from '@material-ui/core';
-import Footer from '../footer';
-import Header from '../header';
+import Footer from '../Footer';
+import Header from '../Header';
 import {useStyles} from './styles';
 
 const PageLayout = ({children}) => {

@@ -5,14 +5,6 @@ export const useStyles = makeStyles({
         height:    '48px',
         borderTop: '1px solid #dadce0',
         cursor:    'pointer',
-        // '&:hover': {
-        //     background: '#eaebec',
-        // },
-        // '&:focus': {
-        //     border:        'none',
-        //     outline:       '2px solid #333',
-        //     outlineOffset: '2px',
-        // },
         '& td':    {
             borderBottom: 'none',
             padding:      '6px',
@@ -27,6 +19,7 @@ export const useStyles = makeStyles({
         borderRadius:    '4px',
         backgroundColor: 'rgb(213, 94, 0)',
     },
+
     ticker: {
         display:        'flex',
         letterSpacing:  '.07272727em',

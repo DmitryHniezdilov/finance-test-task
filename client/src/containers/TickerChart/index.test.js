@@ -8,7 +8,7 @@ jest.mock('react-router-dom', () => ({
     useRouteMatch: () => ({ params: {ticker: 'Apple'} }),
 }));
 
-describe('tickerChart', () => {
+describe('TickerChart', () => {
     beforeEach(() => {
         redux.useSelector = jest.fn(() => ({tickers: []}));
     });
