@@ -14,13 +14,15 @@ const TickerItemChange = (props) => {
     const {changeDirection, change, ...other} = props;
     const classes = useStyles(props);
 
+    const valueTickerItemChange = `${CHANGE_DIRECTION_SYMBOLS[ changeDirection ]}\u00A0${change}\u00A0$`;
+
     return (
         <Typography
             className = { classes.textChange }
             component = 'span'
             variant = 'body1'
             { ...other }>
-            {`${CHANGE_DIRECTION_SYMBOLS[ changeDirection ]}\u00A0${change}\u00A0$`}
+            {valueTickerItemChange}
         </Typography>
     );
 };

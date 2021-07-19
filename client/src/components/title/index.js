@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Typography} from '@material-ui/core';
 
-const Index = ({children}) => {
+const Title = ({children}) => {
     return (
         <Typography
             gutterBottom
@@ -14,8 +14,8 @@ const Index = ({children}) => {
     );
 };
 
-Index.propTypes = {
+Title.propTypes = {
     children: PropTypes.node,
 };
 
-export default Index;
+export default Title;

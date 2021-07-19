@@ -18,6 +18,7 @@ const TickerList = () => {
                 <Typography
                     align = 'center'
                     component = 'span'
+                    data-test = 'no-data-text'
                     variant = 'h5'>
                     Please run server to give data
                 </Typography>
