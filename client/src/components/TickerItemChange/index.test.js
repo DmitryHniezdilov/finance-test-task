@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import TickerItemChange from './index';
 
-describe('TickerItemChange', () => {
+describe('tickerItemChange', () => {
     test('should render without errors', () => {
         const basicProps = {
             change:          '111',
