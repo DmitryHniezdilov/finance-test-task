@@ -15,8 +15,18 @@ const TickerItemPct = (props) => {
             <div
                 className = { classes.pctInner }
                 { ...other }>
-                { changeDirection === 'grow' && <ExpandLessIcon data-test = 'icon-grow' fontSize = 'small'/>}
-                { changeDirection === 'drop' && <ExpandMoreIcon data-test = 'icon-drop' fontSize = 'small'/>}
+                { changeDirection === 'grow' && (
+                    <ExpandLessIcon
+                        data-test = 'icon-grow'
+                        fontSize = 'small'
+                    />
+                )}
+                { changeDirection === 'drop' && (
+                    <ExpandMoreIcon
+                        data-test = 'icon-drop'
+                        fontSize = 'small'
+                    />
+                )}
                 <Typography
                     component = 'span'
                     variant = 'body1'>
