@@ -6,13 +6,13 @@ const socket = io(SERVER_URL);
 
 export const addTicker = (ticker) => ({ type: types.ADD_TICKER,  ticker});
 
-export const receiveSocketTicker = () => (dispatch) => {
+export let receiveSocketTicker = () => (dispatch) => {
     socket.emit('start');
     socket.on('ticker', (ticker) => {
         dispatch(addTicker(ticker));
     });
 };
 
-export const disconnectSocketTicker = () => () => {
+export let disconnectSocketTicker = () => () => {
     socket.disconnect();
 };
