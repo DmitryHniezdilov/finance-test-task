@@ -10,6 +10,7 @@ indent_size = 4
 [*{json,yml,yaml,html}]
 indent_size = 2
 
+# example ignore rules
 # [*{yaml,html}]
 # charset = unset
 # end_of_line = unset
