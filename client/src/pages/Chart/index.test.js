@@ -4,7 +4,7 @@ import Chart from './index';
 
 jest.mock('../../components/PageLayout', () => () => <div>pageLayout</div>);
 
-describe('Chart', () => {
+describe('chart', () => {
     test('should render without errors', () => {
         const {container} = render(<Chart/>);
 
